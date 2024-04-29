@@ -37,8 +37,8 @@ export default defineComponent({
         {{ textoBotao }}
       </button>
     </div>
-    <nav class="panel mt-5 nav-style">
-      <ul class="ul-stly">
+    <nav class="nav-style">
+      <ul>
         <li>
           <router-link to="/" class="link">
             <i class="fas fa-tasks"></i>
@@ -71,13 +71,14 @@ export default defineComponent({
   }
 
   .nav-style{
-    margin-top: 10px;
+   margin: 2rem auto auto auto;
+   height: 100px;
   }
-  .ul-stly {
+  .nav-style ul {
+    height: 98px;
     display: flex;
-    flex-direction: row;
+    
   }
-
   .panel li {
     margin: 8px 0;
   }
