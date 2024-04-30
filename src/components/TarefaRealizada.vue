@@ -20,11 +20,15 @@ export default defineComponent({
 <template>
   <BoxTarefa>
     <div class="colmns">
-      <div class="colmn is-7">
+      <div class="colmn is-4">
         <!-- se a descrição não exite executa ou (||) ou -->
         {{tarefa.descricao || 'Tarefa sem descrição'}}
       </div>
-  
+      
+      <div class="colunm is-3">
+        {{ tarefa.projeto?.nome || 'N/D' }}
+      </div>
+
       <div class="column">
         <CronometroTemp :tempoEmSegundos="tarefa.duracaoEmSegundos" />
       </div>
