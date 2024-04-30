@@ -1,11 +1,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import BarraLateral from './components/BarraLateral.vue';
+import Notificacoes from './components/Notificacoes.vue';
 
 
 export default defineComponent({
   name: 'App',
-  components: { BarraLateral },
+  components: { BarraLateral, Notificacoes },
   data() {
     return {
       modoEscuroAtivo: false
@@ -33,6 +34,8 @@ export default defineComponent({
     </div>
 
     <div class="column is-three-quarter conteudo">
+      <Notificacoes/>
+
       <!-- chamda do router view -->
       <RouterView></RouterView>
     </div>
