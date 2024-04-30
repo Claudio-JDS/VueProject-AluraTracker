@@ -24,7 +24,8 @@ const rotas: RouteRecordRaw[] = [
     // :id-> indica que é dinamico
     path: '/projetos/:id',
     name: 'Editar projeto',
-    component: Formulario
+    component: Formulario,
+    props: true
   },
 ]
 
