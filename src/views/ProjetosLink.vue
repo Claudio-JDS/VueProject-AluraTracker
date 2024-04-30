@@ -1,26 +1,14 @@
 <script lang="ts">
-import Iprojeto from '@/interfaces/Projetos';
 import { useStore } from '@/store';
 import { computed, defineComponent } from 'vue';
 
-
   export default defineComponent({
     name: 'ProjetosLink',
-    data() {
-      return {
-        nomeDoProjeto: '',
-      }
-    },
-    methods: {
-      salvar() {
-        this.store.commit('ADICIONA_PROJETO', this.nomeDoProjeto)
-        this.nomeDoProjeto = ''
-      },
-    },
+
     setup() {
       const store = useStore()
+
       return {
-        store,
         projetos: computed(() => store.state.projetos)
       }
 
@@ -30,32 +18,32 @@ import { computed, defineComponent } from 'vue';
 
 <template>
   <section class="projetos">
-    <h1 class="title">Projetos</h1>
-
-    <!-- @submit.prevent: escuta o evento já prevendo o comportamento padrão de recargara página -->
-    <form @submit.prevent="salvar">
-      <div class="field">
-        <label for="nomeDoProjeto" class="label">Nome do projeto</label>
-        <input type="text" class="input" v-model="nomeDoProjeto" id="nomeDoProjeto">
-      </div>
-      <div class="field">
-        <button class="button" type="submit">
-          Salvar
-        </button>
-      </div>
-    </form>
+    <RouterLink to="/projetos/novo" class="button">
+      <span class="icon is-small">
+        <i class="fas fa-plus"></i>
+      </span>
+      <span>Novo Projeto</span>
+    </RouterLink>
 
     <table class="table is-fullwidth ">
       <thead>
         <tr>
           <th>Id</th>
           <th>Nome</th>
+          <th>Ações</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="projeto in projetos" :key="projeto.id">
           <td>{{ projeto.id }}</td>
           <td>{{ projeto.nome }}</td>
+          <td>
+            <RouterLink :to="`/projetos/${projeto.id}`" class="button">
+              <span class="icon is-small">
+                <i class="fas fa-pencil-alt"></i>
+              </span>
+            </RouterLink>
+          </td>
         </tr>
       </tbody>
     </table>
