@@ -1,8 +1,11 @@
 <script lang="ts">
 import { useStore } from '@/store';
 import { defineComponent } from 'vue';
-import { ADICIONA_PROJETO, ALTERA_PROJETO, NOTIFICAR } from '@/store/tipo-mutacoes';
+
+import { ADICIONA_PROJETO, ALTERA_PROJETO} from '@/store/tipo-mutacoes';
 import { TipoNotificacao } from '@/interfaces/INotificacao';
+
+import useNotificador from '@/hooks/notificador'
 
   export default defineComponent({
     name: 'Formulario',
@@ -11,6 +14,7 @@ import { TipoNotificacao } from '@/interfaces/INotificacao';
         type: String
       }
     },
+    
     mounted() {
       if (this.id) {
         const projeto = this.store.state.projetos.find(
@@ -38,23 +42,23 @@ import { TipoNotificacao } from '@/interfaces/INotificacao';
           //this.nomeDoProjeto: vinculado ao input do formulário
           this.store.commit(ADICIONA_PROJETO, this.nomeDoProjeto)
         }
-        this.nomeDoProjeto = '',
 
-        this.store.commit(NOTIFICAR, {
-          titulo: 'Novo projeto foi salvo!',
-          texto: `Suceso! Seu projeto está disponivel.`,
-          tipo: TipoNotificacao.SUCESSO
-        })
-        
+        this.nomeDoProjeto = ''
+
+        // método está vindo de /hooks/notificador
+        this.notificar(TipoNotificacao.SUCESSO, 'Excelente!', 'Projeto cadastrado com sucesso!')
+
         this.$router.push(`/projetoslink`)
-      },
+      },  
 
     },
     setup() {
       const store = useStore()
+      const {notificar} = useNotificador()
 
       return {
         store, 
+        notificar
       }
 
     }
