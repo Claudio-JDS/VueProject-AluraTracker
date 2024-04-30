@@ -1,7 +1,7 @@
 <script lang="ts">
 import { useStore } from '@/store';
 import { defineComponent } from 'vue';
-
+import { ADICIONA_PROJETO, ALTERA_PROJETO } from '@/store/tipo-mutacoes';
 
   export default defineComponent({
     name: 'Formulario',
@@ -27,7 +27,7 @@ import { defineComponent } from 'vue';
     methods: {
       salvar() {
         if (this.id) {
-          this.store.commit('ALTERA_PROJETO', {
+          this.store.commit(ALTERA_PROJETO, {
             id: this.id,
             nome: this.nomeDoProjeto
           })
@@ -35,7 +35,7 @@ import { defineComponent } from 'vue';
         } else {
           //commit: chama a mutations
           //this.nomeDoProjeto: vinculado ao input do formulário
-          this.store.commit('ADICIONA_PROJETO', this.nomeDoProjeto)
+          this.store.commit(ADICIONA_PROJETO, this.nomeDoProjeto)
         }
         this.nomeDoProjeto = '',
         this.$router.push(`/projetoslink`)
@@ -77,8 +77,8 @@ import { defineComponent } from 'vue';
   </section>
 </template>
 
-<style scoped>
+<!-- <style scoped>
 .projetos {
   padding: 1.25rem;
 }
-</style>
+</style> -->

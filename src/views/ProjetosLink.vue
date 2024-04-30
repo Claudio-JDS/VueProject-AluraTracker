@@ -9,7 +9,9 @@ import { defineComponent } from 'vue';
 
 <template>
   <div class="projetos">
+
     <RouterView></RouterView>
+
   </div>
 </template>
 
