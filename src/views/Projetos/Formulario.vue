@@ -53,7 +53,7 @@ import { defineComponent } from 'vue';
 </script>
 
 <template>
-  <section class="projetos">
+  <section>
     <h1 class="title">Projetos</h1>
 
     <!-- @submit.prevent: escuta o evento já prevendo o comportamento padrão de recargara página -->
@@ -78,8 +78,7 @@ import { defineComponent } from 'vue';
 </template>
 
 <style scoped>
-  .projetos{
-    padding: 1.25rem;
-  }
-
+.projetos {
+  padding: 1.25rem;
+}
 </style>
